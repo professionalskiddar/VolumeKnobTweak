@@ -1,6 +1,6 @@
-﻿#Requires AutoHotkey v2.0
+#Requires AutoHotkey v2.0
 #NoTrayIcon
-#MaxThreadsPerHotkey 2
+#MaxThreadsPerHotkey 9999
 
 ; Global variables
 global volGui, volProgress, volText, volIcon, currentVolume := 50, isMuted := false
@@ -12,8 +12,8 @@ volGui.BackColor := "0D1117"  ; Dark background to make neon colors pop
 volGui.SetFont("s10 cFFFFFF", "Segoe UI Variable Display") ; Clean native Win11 Font
 
 ; Add elements inside the capsule: Speaker Icon, Progress Bar, and Percent Text
-volIcon := volGui.Add("Text", "x15 y14 w35 h20", "High")
-volProgress := volGui.Add("Progress", "x55 y18 w120 h4 cFFFFFF Background1E2329") ; White on dark background
+volIcon := volGui.Add("Text", "x5 y14 w45 h20", "High")
+volProgress := volGui.Add("Progress", "x65 y18 w110 h4 cFFFFFF Background1E2329") ; White on dark background
 volText := volGui.Add("Text", "x185 y14 w40 h20 Right", "50%")
 
 ; Apply modern Windows 11 rounded corners to the whole window popup
@@ -80,9 +80,9 @@ UpdateAndShowOSD(vol, showWindow := true) {
     
     ; Dynamic Icon: Changes visual speaker state based on volume level
     if (isMuted)
-        volIcon.Value := "Mute"
+        volIcon.Value := "Muted"
     else if (RoundVol == 0)
-        volIcon.Value := "Mute"
+        volIcon.Value := "Muted"
     else if (RoundVol < 33)
         volIcon.Value := "Low"
     else if (RoundVol < 66)
@@ -98,7 +98,7 @@ UpdateAndShowOSD(vol, showWindow := true) {
         
     ; Show stored volume when muted, otherwise show current volume
     displayVolume := isMuted ? storedVolume : RoundVol
-    volText.Value := displayVolume . "%"
+    volText.Value := isMuted ? "✕ " . displayVolume . "%" : displayVolume . "%"
     volProgress.Value := displayVolume
     
     ; Only show window if requested (skip on startup)
