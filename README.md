@@ -1,1 +1,1 @@
-I made this AutoHotKey macro to make it so the volume knob on my keyboard only makes the volume increase by 1. You can also use this as just a volume notification tweaker. If you want, you can also install HideVolumeOSD for the best experience. http://wordpress.venturi.de/?p=379
+I made this AutoHotKey macro to make it so the volume knob on my keyboard only makes the volume increase by 1. You can also use this as just a volume notification tweaker.
